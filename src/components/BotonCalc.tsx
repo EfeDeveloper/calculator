@@ -1,32 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface Props {
     label: string;
     color?: string;
     ancho?: boolean;
+    action: (numeroTexto: string) => void;
 }
 
 export const BotonCalc = ({
     label,
     color = '#2D2D2D',
     ancho = false,
+    action,
 }: Props) => {
     return (
-        <View
-            style={{
-                ...styles.boton,
-                backgroundColor: color,
-                width: ancho ? 180 : 80,
-            }}>
-            <Text
+        <TouchableOpacity onPress={() => action(label)}>
+            <View
                 style={{
-                    ...styles.botonTexto,
-                    color: color === '#2D2D2D' ? '#DDDDDD' : '#1B2430',
+                    ...styles.boton,
+                    backgroundColor: color,
+                    width: ancho ? 180 : 80,
                 }}>
-                {label}
-            </Text>
-        </View>
+                <Text
+                    style={{
+                        ...styles.botonTexto,
+                        color: color === '#2D2D2D' ? '#DDDDDD' : '#1B2430',
+                    }}>
+                    {label}
+                </Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
